@@ -60,14 +60,14 @@ func Close() {
 
 func logInit() {
 	logger.SetLogger(logrus.New(
-		logCfg.WithProjectName(""),
-		logCfg.WithLogPath(""),
-		logCfg.WithLogName(""),
-		logCfg.WithMaxAge(""),
-		logCfg.WithMaxSize(""),
-		logCfg.WithIsStdOut(""),
-		logCfg.WithLogLevel(""),
-		logCfg.WithSentryDSN(""),
-		logCfg.WithElasticURL(""),
+		logCfg.WithProjectName(cfg.Log.ProjectName),
+		logCfg.WithLogPath(cfg.Log.LogPath),
+		logCfg.WithLogName(cfg.Log.LogName),
+		logCfg.WithMaxAge(cfg.Log.MaxAge),
+		logCfg.WithMaxSize(cfg.Log.MaxSize),
+		logCfg.WithIsStdOut(cfg.Log.IsStdOut),
+		logCfg.WithLogLevel(cfg.Log.LogLevel),
+		logCfg.WithSentryDSN(cfg.Log.SentryDSN),
+		logCfg.WithElasticURL(cfg.Log.ElasticURL),
 	))
 }

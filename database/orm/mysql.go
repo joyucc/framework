@@ -9,13 +9,15 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
+var db *gorm.DB
+
 type DBHandler struct {
 	DB *gorm.DB
 }
 
 func New(opts ...Option) *DBHandler {
 	o := NewOptions(opts...)
-	db := connect(o)
+	db = connect(o)
 	db.DB().SetMaxIdleConns(o.Idle)
 	db.DB().SetMaxOpenConns(o.Active)
 	db.DB().SetConnMaxLifetime(time.Duration(o.IdleTimeout) / time.Second)
@@ -24,6 +26,7 @@ func New(opts ...Option) *DBHandler {
 }
 
 func (d *DBHandler) Close() {
+
 	err := d.DB.Close()
 	if err != nil {
 		logger.Errorf("Disconnect from database failed: [%s]", err)
@@ -41,6 +44,15 @@ func (d *DBHandler) Migrate(models []interface{}) error {
 			logger.Panicf("auto migrate db table error: %v", err)
 		}
 	})
+
+	return nil
+}
+
+func GetDB() *gorm.DB {
+	err := db.DB().Ping()
+	if err == nil {
+		return db
+	}
 
 	return nil
 }
