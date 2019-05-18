@@ -6,14 +6,14 @@ import (
 )
 
 const (
-	RedisKeyValueAdapter KeyValueAdapter = "redis"
+	RedisKeyValueAdapter KeyValueAdapter = "redisgo"
 )
 
 type KeyValueAdapter string
 
 type KeyValue struct {
-	Adapter  KeyValueAdapter `default:"redis"`
-	Hostname string          `default:"redis"`
+	Adapter  KeyValueAdapter `default:"redisgo"`
+	Hostname string          `default:"redisgo"`
 	Username string          `default:""`
 	Password string          `default:""`
 	Port     int             `default:"6379"`

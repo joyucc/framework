@@ -1,7 +1,7 @@
 package config
 
 const (
-	RedisSessionStore  SessionStore = "redis"
+	RedisSessionStore  SessionStore = "redisgo"
 	CookieSessionStore SessionStore = "cookie"
 )
 
